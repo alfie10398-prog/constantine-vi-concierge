@@ -4,10 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "vite build && node scripts/portable-preview.mjs",
-    "preview": "vite preview --host 0.0.0.0",
-    "test": "playwright test"
+    "dev": "npm run build && node server/local.mjs",
+    "build": "vite build",
+    "preview": "node server/local.mjs",
+    "test": "npm run test:security && playwright test",
+    "start": "node server/local.mjs",
+    "setup:local": "node scripts/local-setup.mjs",
+    "test:security": "node --test tests/security.test.mjs"
   },
-  "devDependencies": { "@playwright/test": "^1.56.1", "vite": "^7.2.2" }
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "vite": "^7.2.2",
+    "wrangler": "^4.157.0"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  }
 }

@@ -40,8 +40,8 @@ Real routing needs a current resort-approved plan or georeferenced facility coor
 
 These gaps are visible in guest-facing copy where relevant. They do not prevent private review of the implemented interactions, but this version is not a verified operational resort guide.
 
-## Validation
+## Current validation and implementation
 
-Production build and nine Playwright checks passed across three Chromium viewport/device profiles: iPhone 13 (390 × 664 CSS viewport), tablet (820 × 1180), desktop (1440 × 1000). Checks cover loaded images, approved artwork use, direct map entry, facility selection, truthfulness of unavailable routing, zoom/reset, gallery dialog, Escape dismissal, guest information, section navigation, no page overflow, and self-contained offline preview operation. Screenshots are saved in `docs/screenshots`.
+The next implementation adds booking-scoped guest access, host administration, private server-side information, Discover Northern Cyprus and Guest Assistance, QR generation after URL approval, and PWA installation support. Original approved assets remain unchanged. See SECURITY.md and HOSTING.md for boundaries and deployment requirements.
 
-The managed browser blocks direct file navigation, so portable preview content was loaded into an offline browser document to validate embedded assets and navigation. Actual physical iPhone/Safari testing remains outstanding. The website is prepared for review on the `website-preview` branch. No public site was deployed and no merge into `main` is part of this delivery.
+12 named backend/security checks and 16 Chromium browser checks passed across iPhone, Android, tablet and desktop profiles. A production build, npm audit (zero known vulnerabilities) and Cloudflare Worker deployment dry-run and local Worker/D1 emulator smoke check passed. Browser screenshots cover welcome and map. WebKit/Firefox downloads were denied by network policy; real Safari and physical-device checks remain outstanding. No site has been deployed or merged. The obsolete standalone HTML preview was removed because it cannot enforce booking access.

@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS bookings (
+ id TEXT PRIMARY KEY, label TEXT NOT NULL, code_hash TEXT NOT NULL UNIQUE,
+ starts_at INTEGER NOT NULL, ends_at INTEGER NOT NULL, active INTEGER NOT NULL DEFAULT 0,
+ created_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS sessions (
+ token_hash TEXT PRIMARY KEY, role TEXT NOT NULL CHECK(role IN ('guest','admin')),
+ booking_id TEXT REFERENCES bookings(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS attempts (key TEXT PRIMARY KEY, count INTEGER NOT NULL, reset_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS settings (id TEXT PRIMARY KEY, value TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS session_expiry ON sessions(expires_at);
